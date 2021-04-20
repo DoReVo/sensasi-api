@@ -28,6 +28,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "fast-xml-parser": "^3.19.0"
+    "fast-xml-parser": "^3.19.0",
+    "tiny-request-router": "^1.2.2"
   }
 }
