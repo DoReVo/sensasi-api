@@ -1,5 +1,6 @@
 import parser from 'fast-xml-parser'
 import { Params } from 'tiny-request-router'
+import { corsHeaders } from '../config/CORS'
 
 export async function getLatestNews(request: Request): Promise<Response> {
   // Get latest news
@@ -9,7 +10,7 @@ export async function getLatestNews(request: Request): Promise<Response> {
   const parsed = parser.parse(await res.text())
   const jsonData = JSON.stringify(parsed)
 
-  return new Response(jsonData)
+  return new Response(jsonData, { headers: corsHeaders })
 }
 
 export async function getMalaysiaNews(request: Request): Promise<Response> {
@@ -20,7 +21,7 @@ export async function getMalaysiaNews(request: Request): Promise<Response> {
   const parsed = parser.parse(await res.text())
   const jsonData = JSON.stringify(parsed)
 
-  return new Response(jsonData)
+  return new Response(jsonData, { headers: corsHeaders })
 }
 
 export async function getWorldNews(request: Request): Promise<Response> {
@@ -33,5 +34,5 @@ export async function getWorldNews(request: Request): Promise<Response> {
   const parsed = parser.parse(await res.text())
   const jsonData = JSON.stringify(parsed)
 
-  return new Response(jsonData)
+  return new Response(jsonData, { headers: corsHeaders })
 }
