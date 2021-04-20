@@ -10,4 +10,13 @@ addEventListener('fetch', (event) => {
   // Call the handler if request matched with routes we specified using
   // tiny-request-router
   if (matchedRoute) event.respondWith(matchedRoute.handler(matchedRoute.params))
+  else event.respondWith(notFoundException())
 })
+
+async function notFoundException(): Promise<Response> {
+  const init: ResponseInit = {
+    status: 404,
+  }
+
+  return new Response(JSON.stringify({ error: 'Page not found' }), init)
+}
