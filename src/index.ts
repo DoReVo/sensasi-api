@@ -1,5 +1,13 @@
-import { handleRequest } from './handler'
+import { Method } from 'tiny-request-router'
+import router from './router'
 
 addEventListener('fetch', (event) => {
-  event.respondWith(handleRequest(event.request))
+  const { pathname } = new URL(event.request.url)
+
+  // Route the request using tiny-request-router
+  const matchedRoute = router.match(event.request.method as Method, pathname)
+
+  // Call the handler if request matched with routes we specified using
+  // tiny-request-router
+  if (matchedRoute) event.respondWith(matchedRoute.handler(matchedRoute.params))
 })
